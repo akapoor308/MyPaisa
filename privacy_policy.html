@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – MyPaisa</title>
+  <style>
+    :root {
+      --brand:   #1976D2;
+      --accent:  #0D47A1;
+      --bg:      #F5F7FA;
+      --card:    #FFFFFF;
+      --text:    #212121;
+      --muted:   #616161;
+      --border:  #E0E0E0;
+      --green:   #2E7D32;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── Header ────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    header .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    header .logo svg { width: 44px; height: 44px; fill: #fff; }
+    header h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.5px; }
+    header p  { margin-top: 8px; font-size: 1rem; opacity: 0.85; }
+
+    /* ── Effective date badge ───────────────────────────── */
+    .date-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.85rem;
+      margin-top: 14px;
+    }
+
+    /* ── Main layout ────────────────────────────────────── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ── Quick-summary banner ───────────────────────────── */
+    .summary-banner {
+      background: #E8F5E9;
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin-bottom: 40px;
+    }
+    .summary-banner h2 {
+      color: var(--green);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+    }
+    .summary-banner ul { list-style: none; padding: 0; }
+    .summary-banner ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .summary-banner ul li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Cards / Sections ───────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    h2.section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2.section-title .icon {
+      width: 28px; height: 28px;
+      background: var(--brand);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    h2.section-title .icon svg { fill: #fff; width: 16px; height: 16px; }
+
+    p { margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul.body-list { padding-left: 20px; margin-bottom: 12px; }
+    ul.body-list li { margin-bottom: 6px; }
+
+    strong { font-weight: 600; }
+
+    /* ── Permission table ───────────────────────────────── */
+    .perm-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 6px; }
+    .perm-table th {
+      background: var(--brand);
+      color: #fff;
+      text-align: left;
+      padding: 9px 12px;
+      font-weight: 600;
+    }
+    .perm-table th:first-child { border-radius: 6px 0 0 0; }
+    .perm-table th:last-child  { border-radius: 0 6px 0 0; }
+    .perm-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .perm-table tr:last-child td { border-bottom: none; }
+    .perm-table tr:nth-child(even) td { background: #F5F7FA; }
+    .perm-table .perm-name { font-family: monospace; font-size: 0.82rem; color: #555; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-local { background: #E8F5E9; color: #2E7D32; }
+    .badge-optional { background: #FFF3E0; color: #E65100; }
+
+    /* ── Highlight box ──────────────────────────────────── */
+    .highlight {
+      background: #E3F2FD;
+      border-left: 4px solid var(--brand);
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.95rem;
+    }
+
+    /* ── Contact section ────────────────────────────────── */
+    .contact-box {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      padding: 28px 30px;
+      margin-top: 32px;
+      text-align: center;
+    }
+    .contact-box h2 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
+    .contact-box a  { color: #90CAF9; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 20px 18px; }
+      header { padding: 36px 18px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85
+               2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3
+               -3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31
+               1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79
+               -2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76
+               3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55
+               0-2.84-2.43-3.81-4.7-4.4z"/>
+    </svg>
+    <span style="font-size:1.5rem;font-weight:800;letter-spacing:-0.5px;">MyPaisa</span>
+  </div>
+  <h1>Privacy Policy</h1>
+  <p>Your financial data stays on your device — always.</p>
+  <div class="date-badge">Effective Date: April 18, 2026 &nbsp;|&nbsp; Version 1.0</div>
+</header>
+
+<!-- ═══════════════════════════ MAIN ════════════════════════════= -->
+<main>
+
+  <!-- Quick Summary -->
+  <div class="summary-banner">
+    <h2>The short version</h2>
+    <ul>
+      <li>All your financial data is stored <strong>locally on your device only</strong> — nothing is uploaded to our servers.</li>
+      <li>We do <strong>not</strong> collect, sell, or share any personal or financial information.</li>
+      <li>SMS messages are read <strong>solely</strong> to auto-detect bank transactions; message content is never transmitted.</li>
+      <li>We use <strong>no advertising</strong>, analytics SDKs, or third-party trackers.</li>
+      <li>The app makes network requests only to fetch public mutual-fund NAV prices and stock quotes — no user data is sent.</li>
+    </ul>
+  </div>
+
+  <!-- 1. Introduction -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10
+        10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+      </span>
+      1. Introduction
+    </h2>
+    <p>
+      MyPaisa ("<strong>the App</strong>") is a personal finance management application developed for
+      individual use in India. This Privacy Policy explains how the App handles information on your
+      device. Because MyPaisa is designed as an entirely <strong>offline-first</strong> app, the
+      principles here are simpler than most: your data does not leave your phone.
+    </p>
+    <p>
+      By installing or using MyPaisa you agree to the practices described in this policy. If you do
+      not agree, please uninstall the App.
+    </p>
+  </div>
+
+  <!-- 2. Information we access -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7
+        3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9
+        2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2
+        2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1
+        1.39 3.1 3.1v2z"/></svg>
+      </span>
+      2. Information the App Accesses
+    </h2>
+    <p>
+      MyPaisa requests the following Android permissions. All data accessed through these permissions
+      is processed <strong>entirely on your device</strong>.
+    </p>
+    <table class="perm-table">
+      <thead>
+        <tr>
+          <th>Permission</th>
+          <th>Why it is needed</th>
+          <th>Data stored?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="perm-name">READ_SMS / RECEIVE_SMS</span></td>
+          <td>Automatically detects bank credit/debit notifications so you don't have to enter transactions manually. The App scans incoming SMS messages from known bank sender IDs for transaction amounts and account numbers. <strong>Message content is never transmitted off-device.</strong></td>
+          <td><span class="badge badge-local">On-device only</span></td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">USE_BIOMETRIC / USE_FINGERPRINT</span></td>
+          <td>Allows you to unlock the App using fingerprint or face recognition as an alternative to your PIN. Biometric data itself is managed entirely by the Android operating system; the App never sees or stores raw biometric data.</td>
+          <td><span class="badge badge-local">OS-managed</span></td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">INTERNET / ACCESS_NETWORK_STATE</span></td>
+          <td>Fetches publicly available mutual fund NAV prices from <em>mfapi.in</em> and stock prices from Yahoo Finance APIs. Only ticker symbols and scheme codes (not your holdings details) are sent as query parameters in these requests.</td>
+          <td><span class="badge badge-local">No user data sent</span></td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">POST_NOTIFICATIONS</span></td>
+          <td>Sends local reminders for upcoming bill due dates. Notifications are generated on-device by Android's WorkManager; no notification content is transmitted externally.</td>
+          <td><span class="badge badge-local">On-device only</span></td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">RECEIVE_BOOT_COMPLETED</span></td>
+          <td>Reschedules bill-reminder alarms after the device reboots so you don't miss payment deadlines.</td>
+          <td><span class="badge badge-local">On-device only</span></td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">VIBRATE</span></td>
+          <td>Provides haptic feedback on button taps for a better user experience.</td>
+          <td><span class="badge badge-local">On-device only</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. How we store your data -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36
+        C18 2.08 15.96 0 13.45 0c-1.4 0-2.56.73-3.29 1.83L9 3 7.84
+        1.83C7.11.73 5.95 0 4.55 0 2.04 0 0 2.08 0 4.64c0 .48.11.92.18
+        1.36H0v2h20V6zM4.55 4.64C4.55 3.18 5.39 2 6.43 2c.64 0 1.18.37
+        1.49.91L9 4.5l1.08-1.59C10.39 2.37 10.93 2 11.57 2c1.04 0 1.88
+        1.18 1.88 2.64H4.55zM0 20h20v2H0v-2zm0-7h20v5H0v-5z"/></svg>
+      </span>
+      3. How Your Data is Stored
+    </h2>
+    <p>
+      All financial information you enter — accounts, transactions, investments, budgets, loans,
+      bills — is stored in a local SQLite database on your device. This database is encrypted using
+      <strong>SQLCipher (AES-256)</strong> with a unique encryption key generated on your device and
+      secured inside the Android KeyStore. Neither the data nor the encryption key ever leaves your
+      phone.
+    </p>
+    <p>
+      Your <strong>PIN is never stored in plain text</strong>. It is hashed using SHA-256 with a
+      fixed application-level salt before being saved to Android DataStore Preferences. The App
+      cannot recover your original PIN.
+    </p>
+    <div class="highlight">
+      <strong>No cloud backup.</strong> The App sets <code>android:allowBackup="false"</code>
+      and explicitly excludes sensitive files from Android's Auto Backup service. Your financial
+      data is not automatically backed up to Google Drive or any other cloud service.
+    </div>
+    <p>
+      Retention: your data remains on your device until you uninstall the App or manually delete
+      records within it. Uninstalling the App removes all locally stored data.
+    </p>
+  </div>
+
+  <!-- 4. Data we do NOT collect -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10
+        10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10
+        14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </span>
+      4. What We Do Not Collect
+    </h2>
+    <p>MyPaisa does <strong>not</strong>:</p>
+    <ul class="body-list">
+      <li>Collect or transmit your name, email address, phone number, Aadhaar, PAN, or any other personally identifiable information.</li>
+      <li>Upload your financial transactions, account balances, investments, or any financial data to external servers.</li>
+      <li>Use advertising SDKs (e.g., Google AdMob, Meta Audience Network) or display advertisements.</li>
+      <li>Integrate analytics SDKs that profile your behaviour (e.g., Firebase Analytics, Mixpanel, Amplitude).</li>
+      <li>Share any information with third parties for marketing or commercial purposes.</li>
+      <li>Track your location.</li>
+      <li>Access your contacts, camera, microphone, or files.</li>
+    </ul>
+  </div>
+
+  <!-- 5. Network requests -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18
+        0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6
+        0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+      </span>
+      5. Network Requests
+    </h2>
+    <p>
+      The App makes outbound network requests for the sole purpose of fetching publicly available
+      market prices:
+    </p>
+    <ul class="body-list">
+      <li><strong>Mutual Fund NAV</strong> — queried from <code>api.mfapi.in</code> using only the publicly registered AMFI scheme code of a fund you have added. No account balances or unit counts are sent.</li>
+      <li><strong>Stock Prices</strong> — queried from Yahoo Finance's public quote API using only the NSE/BSE ticker symbol you enter. No holding quantity or cost basis is sent.</li>
+    </ul>
+    <p>
+      All network communication uses <strong>HTTPS (TLS)</strong> exclusively. Plaintext HTTP
+      traffic is blocked by the App's network security configuration.
+    </p>
+    <p>
+      These third-party services have their own privacy policies independent of MyPaisa.
+    </p>
+  </div>
+
+  <!-- 6. SMS access detail -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2
+        22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0
+        -3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+      </span>
+      6. SMS Access — Detailed Explanation
+    </h2>
+    <p>
+      Because <code>READ_SMS</code> and <code>RECEIVE_SMS</code> are considered sensitive permissions
+      by Google Play, we explain exactly how the App uses them:
+    </p>
+    <ul class="body-list">
+      <li>The App listens for incoming SMS messages from a <strong>pre-defined list of known Indian bank sender IDs</strong> (e.g., VM-ICICIB, AD-HDFCBK, BP-SBICRD). Messages from other senders are ignored.</li>
+      <li>Matching messages are parsed on-device using regular expressions to extract: transaction type (credit/debit), amount, and the last four digits of the account/card number.</li>
+      <li>The extracted data is stored locally in the encrypted database as a pending transaction for your review.</li>
+      <li>The <strong>full text of SMS messages is never stored</strong> — only the extracted structured fields are retained.</li>
+      <li>SMS data is <strong>never transmitted</strong> to any server, third party, or remote service.</li>
+      <li>OTP messages are explicitly detected and <strong>discarded without processing</strong>.</li>
+    </ul>
+    <p>
+      The permission is used in accordance with Google Play's SMS and Call Log Permissions policy.
+      You may deny this permission; doing so simply means you will need to enter transactions
+      manually.
+    </p>
+  </div>
+
+  <!-- 7. Security -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74
+        9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </span>
+      7. Security Measures
+    </h2>
+    <p>MyPaisa implements multiple layers of security appropriate for a financial application:</p>
+    <ul class="body-list">
+      <li><strong>AES-256 encrypted database</strong> (SQLCipher) with a hardware-backed key stored in the Android KeyStore.</li>
+      <li><strong>PIN authentication</strong> with SHA-256 hashing; brute-force protection with exponential back-off delays and a hard lock after 10 consecutive failures.</li>
+      <li><strong>Biometric authentication</strong> via Android's BiometricPrompt API — raw biometric data is never accessible to the App.</li>
+      <li><strong>HTTPS-only networking</strong> enforced through Android's Network Security Configuration.</li>
+      <li><strong>ProGuard/R8 code obfuscation</strong> in release builds to resist reverse-engineering.</li>
+      <li>App screenshot <strong>prevention</strong> in the Android task switcher.</li>
+      <li><strong>No cloud backup</strong> of sensitive files.</li>
+    </ul>
+    <p>
+      While we have taken reasonable precautions to protect your data, no security system is
+      infallible. We recommend keeping your device PIN/password enabled and keeping the App
+      up to date.
+    </p>
+  </div>
+
+  <!-- 8. Children -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4
+        -4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0
+        -2.66-5.33-4-8-4z"/></svg>
+      </span>
+      8. Children's Privacy
+    </h2>
+    <p>
+      MyPaisa is not intended for use by children under the age of 18. We do not knowingly collect
+      any information from minors. If you believe a minor has used this App, please contact us at
+      the address below and we will provide guidance on removing locally stored data.
+    </p>
+  </div>
+
+  <!-- 9. Your rights -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h
+        -6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/></svg>
+      </span>
+      9. Your Rights Under Indian Law
+    </h2>
+    <p>
+      MyPaisa complies with the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong>
+      and the <strong>Information Technology Act, 2000</strong> (including the IT (Reasonable Security
+      Practices and Procedures) Rules, 2011).
+    </p>
+    <p>
+      Because all data is stored exclusively on your own device and we do not collect or process
+      your personal data on any server, most data-subject rights (access, correction, portability,
+      erasure) are exercised directly by you within the App or by uninstalling it. Specifically:
+    </p>
+    <ul class="body-list">
+      <li><strong>Right to access</strong> — all your data is visible within the App at all times.</li>
+      <li><strong>Right to correct</strong> — you can edit any record directly in the App.</li>
+      <li><strong>Right to erasure</strong> — delete individual records in the App, or uninstall the App to remove all data.</li>
+      <li><strong>Right to data portability</strong> — a future version of the App may include an export feature; in the meantime your data can be queried via the local database.</li>
+    </ul>
+    <p>
+      If you have any questions about exercising these rights, please contact us using the details
+      in Section 11.
+    </p>
+  </div>
+
+  <!-- 10. Changes -->
+  <div class="card">
+    <h2 class="section-title">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10.12h-6.78l2.74-2.82c-2.73
+        -2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15
+        2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64
+        6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58
+        3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72
+        1.21L11 13V8h1.5z"/></svg>
+      </span>
+      10. Changes to This Policy
+    </h2>
+    <p>
+      We may update this Privacy Policy from time to time. When we do, we will revise the
+      "Effective Date" at the top of this page and release an updated version of the App. Your
+      continued use of the App after an update constitutes acceptance of the revised policy.
+      Material changes will be highlighted in the App's release notes on Google Play.
+    </p>
+  </div>
+
+  <!-- 11. Contact -->
+  <div class="contact-box">
+    <h2>11. Contact Us</h2>
+    <p>
+      If you have any questions, concerns, or requests regarding this Privacy Policy or the
+      handling of your data, please reach out:
+    </p>
+    <p style="margin-top:14px;">
+      <strong>Developer:</strong> Ashish Kapoor<br/>
+      <strong>Email:</strong> <a href="mailto:kapoorashish213@gmail.com">kapoorashish213@gmail.com</a><br/>
+      <strong>App:</strong> MyPaisa — Personal Finance Manager<br/>
+      <strong>Country:</strong> India
+    </p>
+    <p style="margin-top:14px;font-size:0.88rem;opacity:0.8;">
+      We aim to respond to all privacy-related enquiries within 30 days.
+    </p>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════ FOOTER ══════════════════════════= -->
+<footer>
+  <p>© 2026 MyPaisa. All rights reserved.</p>
+  <p style="margin-top:4px;">
+    This policy was last reviewed on <strong>April 18, 2026</strong>.
+  </p>
+</footer>
+
+</body>
+</html>
