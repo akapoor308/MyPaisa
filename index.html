@@ -222,7 +222,7 @@
       <li>We do <strong>not</strong> collect, sell, or share any personal or financial information.</li>
       <li>SMS messages are read <strong>solely</strong> to detect transaction alerts; SMS body text is never stored or transmitted.</li>
       <li>We use <strong>no advertising</strong>, analytics SDKs, or third-party trackers.</li>
-      <li>Network features include public market prices and, only after your consent, read-only Gmail access to find bills. Your saved financial records are not uploaded to our servers.</li>
+      <li>Network features fetch public market prices. Your saved financial records are not uploaded to our servers.</li>
     </ul>
   </div>
 
@@ -343,19 +343,6 @@
   </div>
 
   <div class="card">
-    <h2 class="section-title">Optional Gmail bill scanning</h2>
-    <p>When you choose Scan Gmail for bills, Google asks you to grant read-only Gmail access.
-    MyPaisa fetches up to 200 matching messages from the last 90 days directly from Google's Gmail API.
-    Message text is parsed on your device to find an explicit amount due in INR and a full payment due date.
-    Attachments are not downloaded. Ambiguous messages are skipped. Review detected bills before adding them.</p>
-    <p>The mailbox address and message ID are used temporarily to create a one-way source identifier that
-    prevents the same message from being imported twice. Only the bill title, amount, due date, and source
-    identifier are saved when you add a bill. Email bodies and access tokens are not stored in the MyPaisa
-    database or logs. Google Play services manages authorization. No email data is sent to MyPaisa servers,
-    advertising services, or AI services. No Gmail messages are sent, modified, or deleted.</p>
-    <p>You can delete imported bills in the app and revoke access through
-    <a href="https://myaccount.google.com/connections">Google Account connections</a>.
-    Scanning runs when you request it; this version does not scan mail in the background.</p>
     <h2 class="section-title">User-controlled backups</h2>
     <p>New backups are password-encrypted before being written to the file destination you choose.
     The archive includes the financial database and the key needed to restore it on another device.
@@ -376,7 +363,7 @@
     </h2>
     <p>MyPaisa does <strong>not</strong>:</p>
     <ul class="body-list">
-      <li>Collect personal information on our servers. Optional Gmail scanning temporarily reads your mailbox address on-device to distinguish imported messages between accounts.</li>
+      <li>Collect personal information on our servers.</li>
       <li>Upload your financial transactions, account balances, investments, or any financial data to external servers.</li>
       <li>Use advertising SDKs (e.g., Google AdMob, Meta Audience Network) or display advertisements.</li>
       <li>Integrate analytics SDKs that profile your behaviour (e.g., Firebase Analytics, Mixpanel, Amplitude).</li>
