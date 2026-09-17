@@ -208,7 +208,7 @@
   </div>
   <h1>Privacy Policy</h1>
   <p>Your financial data stays on your device — always.</p>
-  <div class="date-badge">Effective Date: April 18, 2026 &nbsp;|&nbsp; Version 1.0</div>
+  <div class="date-badge">Updated: September 17, 2026</div>
 </header>
 
 <!-- ═══════════════════════════ MAIN ════════════════════════════= -->
@@ -220,9 +220,9 @@
     <ul>
       <li>All your financial data is stored <strong>locally on your device only</strong> — nothing is uploaded to our servers.</li>
       <li>We do <strong>not</strong> collect, sell, or share any personal or financial information.</li>
-      <li>SMS messages are read <strong>solely</strong> to auto-detect bank transactions; message content is never transmitted.</li>
+      <li>SMS messages are read <strong>solely</strong> to detect transaction alerts; SMS body text is never stored or transmitted.</li>
       <li>We use <strong>no advertising</strong>, analytics SDKs, or third-party trackers.</li>
-      <li>The app makes network requests only to fetch public mutual-fund NAV prices and stock quotes — no user data is sent.</li>
+      <li>Network features include public market prices and, only after your consent, read-only Gmail access to find bills. Your saved financial records are not uploaded to our servers.</li>
     </ul>
   </div>
 
@@ -274,8 +274,8 @@
       <tbody>
         <tr>
           <td><span class="perm-name">READ_SMS / RECEIVE_SMS</span></td>
-          <td>Automatically detects bank credit/debit notifications so you don't have to enter transactions manually. The App scans incoming SMS messages from known bank sender IDs for transaction amounts and account numbers. <strong>Message content is never transmitted off-device.</strong></td>
-          <td><span class="badge badge-local">On-device only</span></td>
+          <td>Scans SMS on-device so MyPaisa can prepare debit and credit transactions for your review. Only SMS with an amount, debit/credit wording, and masked account/card digits are considered. OTP, login, security, personal, promotional, balance-only, statement, and reminder messages are ignored.</td>
+          <td><span class="badge badge-local">No SMS body stored</span></td>
         </tr>
         <tr>
           <td><span class="perm-name">USE_BIOMETRIC / USE_FINGERPRINT</span></td>
@@ -342,6 +342,28 @@
     </p>
   </div>
 
+  <div class="card">
+    <h2 class="section-title">Optional Gmail bill scanning</h2>
+    <p>When you choose Scan Gmail for bills, Google asks you to grant read-only Gmail access.
+    MyPaisa fetches up to 200 matching messages from the last 90 days directly from Google's Gmail API.
+    Message text is parsed on your device to find an explicit amount due in INR and a full payment due date.
+    Attachments are not downloaded. Ambiguous messages are skipped. Review detected bills before adding them.</p>
+    <p>The mailbox address and message ID are used temporarily to create a one-way source identifier that
+    prevents the same message from being imported twice. Only the bill title, amount, due date, and source
+    identifier are saved when you add a bill. Email bodies and access tokens are not stored in the MyPaisa
+    database or logs. Google Play services manages authorization. No email data is sent to MyPaisa servers,
+    advertising services, or AI services. No Gmail messages are sent, modified, or deleted.</p>
+    <p>You can delete imported bills in the app and revoke access through
+    <a href="https://myaccount.google.com/connections">Google Account connections</a>.
+    Scanning runs when you request it; this version does not scan mail in the background.</p>
+    <h2 class="section-title">User-controlled backups</h2>
+    <p>New backups are password-encrypted before being written to the file destination you choose.
+    The archive includes the financial database and the key needed to restore it on another device.
+    Keep your backup password safe; it cannot be recovered by us. Legacy ZIP backups are still accepted
+    for restore, but are not password protected. Files may be stored with a cloud provider if you explicitly
+    choose that provider in Android's file picker.</p>
+  </div>
+
   <!-- 4. Data we do NOT collect -->
   <div class="card">
     <h2 class="section-title">
@@ -354,13 +376,13 @@
     </h2>
     <p>MyPaisa does <strong>not</strong>:</p>
     <ul class="body-list">
-      <li>Collect or transmit your name, email address, phone number, Aadhaar, PAN, or any other personally identifiable information.</li>
+      <li>Collect personal information on our servers. Optional Gmail scanning temporarily reads your mailbox address on-device to distinguish imported messages between accounts.</li>
       <li>Upload your financial transactions, account balances, investments, or any financial data to external servers.</li>
       <li>Use advertising SDKs (e.g., Google AdMob, Meta Audience Network) or display advertisements.</li>
       <li>Integrate analytics SDKs that profile your behaviour (e.g., Firebase Analytics, Mixpanel, Amplitude).</li>
       <li>Share any information with third parties for marketing or commercial purposes.</li>
       <li>Track your location.</li>
-      <li>Access your contacts, camera, microphone, or files.</li>
+      <li>Access your contacts, camera, or microphone. The app accesses files you explicitly select for import, backup, or restore.</li>
     </ul>
   </div>
 
@@ -391,7 +413,7 @@
     </p>
   </div>
 
-  <!-- 6. SMS access detail -->
+  <!-- 6. SMS and Call Log access -->
   <div class="card">
     <h2 class="section-title">
       <span class="icon">
@@ -399,24 +421,25 @@
         22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0
         -3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
       </span>
-      6. SMS Access — Detailed Explanation
+      6. SMS and Call Log Access
     </h2>
     <p>
-      Because <code>READ_SMS</code> and <code>RECEIVE_SMS</code> are considered sensitive permissions
-      by Google Play, we explain exactly how the App uses them:
+      SMS-based money management is a core feature of MyPaisa. With your permission, the App reads
+      SMS on your device, considers only transaction alerts, extracts fields such as amount, debit/credit
+      type, merchant, date, and masked account/card suffix, and asks you to confirm before recording
+      the transaction.
     </p>
-    <ul class="body-list">
-      <li>The App listens for incoming SMS messages from a <strong>pre-defined list of known Indian bank sender IDs</strong> (e.g., VM-ICICIB, AD-HDFCBK, BP-SBICRD). Messages from other senders are ignored.</li>
-      <li>Matching messages are parsed on-device using regular expressions to extract: transaction type (credit/debit), amount, and the last four digits of the account/card number.</li>
-      <li>The extracted data is stored locally in the encrypted database as a pending transaction for your review.</li>
-      <li>The <strong>full text of SMS messages is never stored</strong> — only the extracted structured fields are retained.</li>
-      <li>SMS data is <strong>never transmitted</strong> to any server, third party, or remote service.</li>
-      <li>OTP messages are explicitly detected and <strong>discarded without processing</strong>.</li>
-    </ul>
     <p>
-      The permission is used in accordance with Google Play's SMS and Call Log Permissions policy.
-      You may deny this permission; doing so simply means you will need to enter transactions
-      manually.
+      The App does <strong>not</strong> request Call Log access, send SMS messages, write SMS
+      messages, or upload SMS content. OTP, login, security, personal, promotional, statement,
+      reminder, and balance-only messages are ignored. SMS bodies are used only temporarily in
+      memory for parsing; MyPaisa does not save or store SMS body text. Only parsed transaction
+      fields are kept in the local encrypted database for review and duplicate prevention.
+    </p>
+    <p>
+      During update migration, any previously stored raw SMS review text or SMS previews are removed
+      from the local encrypted database. Confirmed transaction records, account balances, budgets,
+      and other user-entered finance data are preserved.
     </p>
   </div>
 
@@ -539,8 +562,7 @@
 <footer>
   <p>© 2026 MyPaisa. All rights reserved.</p>
   <p style="margin-top:4px;">
-    This policy was last reviewed on <strong>April 18, 2026</strong>.
-    
+    This policy was last reviewed on <strong>September 17, 2026</strong>.
   </p>
 </footer>
 
