@@ -208,7 +208,7 @@
   </div>
   <h1>Privacy Policy</h1>
   <p>Your financial data stays on your device — always.</p>
-  <div class="date-badge">Updated: September 17, 2026</div>
+  <div class="date-badge">Updated: October 4, 2026</div>
 </header>
 
 <!-- ═══════════════════════════ MAIN ════════════════════════════= -->
@@ -219,10 +219,10 @@
     <h2>The short version</h2>
     <ul>
       <li>All your financial data is stored <strong>locally on your device only</strong> — nothing is uploaded to our servers.</li>
-      <li>We do <strong>not</strong> collect, sell, or share any personal or financial information.</li>
+      <li>Trial and Pro verification use a hashed device identifier, original trial dates and purchase receipts. We do not sell your information.</li>
       <li>SMS messages are read <strong>solely</strong> to detect transaction alerts; SMS body text is never stored or transmitted.</li>
       <li>We use <strong>no advertising</strong>, analytics SDKs, or third-party trackers.</li>
-      <li>Network features fetch public market prices. Your saved financial records are not uploaded to our servers.</li>
+      <li>Network features fetch public market prices and verify trial and Pro access. Your saved financial records and imported CAMS statements are not uploaded to our servers.</li>
     </ul>
   </div>
 
@@ -238,8 +238,8 @@
     <p>
       MyPaisa ("<strong>the App</strong>") is a personal finance management application developed for
       individual use in India. This Privacy Policy explains how the App handles information on your
-      device. Because MyPaisa is designed as an entirely <strong>offline-first</strong> app, the
-      principles here are simpler than most: your data does not leave your phone.
+      device and verifies trial and Pro access. Financial records are stored locally;
+      trial and Pro access are verified by a secure server.
     </p>
     <p>
       By installing or using MyPaisa you agree to the practices described in this policy. If you do
@@ -284,8 +284,8 @@
         </tr>
         <tr>
           <td><span class="perm-name">INTERNET / ACCESS_NETWORK_STATE</span></td>
-          <td>Fetches publicly available mutual fund NAV prices from <em>mfapi.in</em> and stock prices from Yahoo Finance APIs. Only ticker symbols and scheme codes (not your holdings details) are sent as query parameters in these requests.</td>
-          <td><span class="badge badge-local">No user data sent</span></td>
+          <td>Fetches public market prices using ticker symbols and scheme codes, and connects to our access service to verify trial and Pro access. Financial records, holdings quantities and CAMS documents are not sent to the account service.</td>
+          <td><span class="badge badge-local">Account verification only</span></td>
         </tr>
         <tr>
           <td><span class="perm-name">POST_NOTIFICATIONS</span></td>
@@ -323,12 +323,12 @@
       All financial information you enter — accounts, transactions, investments, budgets, loans,
       bills — is stored in a local SQLite database on your device. This database is encrypted using
       <strong>SQLCipher (AES-256)</strong> with a unique encryption key generated on your device and
-      secured inside the Android KeyStore. Neither the data nor the encryption key ever leaves your
-      phone.
+      secured using Android KeyStore. Financial records are not sent to the account service.
+      An explicit password-encrypted backup includes the data and restore key at the destination you choose.
     </p>
     <p>
-      Your <strong>PIN is never stored in plain text</strong>. It is hashed using SHA-256 with a
-      fixed application-level salt before being saved to Android DataStore Preferences. The App
+      Your <strong>PIN is never stored in plain text</strong>. New PINs are hashed using PBKDF2-HMAC-SHA256
+      with a random salt before being saved to Android DataStore Preferences. The App
       cannot recover your original PIN.
     </p>
     <div class="highlight">
@@ -348,7 +348,45 @@
     The archive includes the financial database and the key needed to restore it on another device.
     Keep your backup password safe; it cannot be recovered by us. Legacy ZIP backups are still accepted
     for restore, but are not password protected. Files may be stored with a cloud provider if you explicitly
-    choose that provider in Android's file picker.</p>
+    choose that provider in Android's file picker. Cached trial verification and Pro licences are not included
+    in financial backups. Restoring a backup does not renew the original trial.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Automatic trial and Pro verification</h2>
+    <p>MyPaisa 1.5.0 and later do not require Google sign-in or create an app account.
+    To preserve your original 30-day trial after a reinstall, the App reads Android's app-scoped
+    device identifier and sends a SHA-256 hash of it over HTTPS to our access service. The raw
+    Android identifier stays on your phone. The service stores a further hashed record key and
+    your original trial start and end dates in a private Google spreadsheet. This identifier is
+    scoped to the App signing key, Android user profile and device; it is not your Google Play
+    account or email address. A new device or factory reset may create a different trial identity.</p>
+    <p>The trial lasts 30 calendar days from its original start, including days when the App is
+    uninstalled. Original dates from older App versions and restored backups may shorten the
+    trial and cannot extend it. Trial history is retained to prevent normal reinstall resets.</p>
+    <p>Existing and new Google Play purchases are verified automatically when you open or return
+    to the App. Purchase receipts are sent over HTTPS to our access service and checked with
+    Google Play. Active lifetime purchases restore without MyPaisa sign-in; cancelled, refunded
+    or pending purchases do not unlock Pro. The current restoration endpoint does not persist
+    submitted purchase tokens in the database. Payment card details are handled by Google Play.</p>
+    <p>The service runs on Google Apps Script with a private Google spreadsheet. Only the service
+    owner and explicitly authorized editors can access the spreadsheet. Google providers may
+    process technical connection and service logs under their own policies. Application code does
+    not log raw device identifiers, identity tokens, session credentials or purchase tokens.
+    Financial records, holdings quantities, SMS messages and CAMS documents are not sent to this service.</p>
+    <p>Local cached access is encrypted with Android KeyStore and excluded from financial backups.
+    Cached verification lasts at most 24 hours within the same device boot; reconnect after reboot
+    or expiry. Uninstalling removes the local cache, but does not delete server trial history.</p>
+    <p>For users who signed in with versions before 1.5.0, existing hashed account trial history,
+    purchase ownership history and saved verification records are retained for compatibility with
+    those versions. Older sessions expire after 30 days. The new App removes local Google session
+    credentials after carrying forward the original trial date and does not request Google identity tokens.
+    To request deletion of legacy account sessions and saved purchase tokens, use the contact in
+    Section 11 with the subject "MyPaisa account deletion". Identity verification is required;
+    limited hashed trial dates and purchase ownership history remain to prevent abuse. You may
+    also request deletion of device verification data through the same contact; we will explain
+    any limited trial history that must be retained. Do not email financial statements, passwords
+    or purchase tokens.</p>
   </div>
 
   <!-- 4. Data we do NOT collect -->
@@ -363,8 +401,8 @@
     </h2>
     <p>MyPaisa does <strong>not</strong>:</p>
     <ul class="body-list">
-      <li>Collect personal information on our servers.</li>
-      <li>Upload your financial transactions, account balances, investments, or any financial data to external servers.</li>
+      <li>Upload your imported CAMS statements or SMS messages to our servers.</li>
+      <li>Upload your saved financial transactions, account balances or investment holdings to the account service.</li>
       <li>Use advertising SDKs (e.g., Google AdMob, Meta Audience Network) or display advertisements.</li>
       <li>Integrate analytics SDKs that profile your behaviour (e.g., Firebase Analytics, Mixpanel, Amplitude).</li>
       <li>Share any information with third parties for marketing or commercial purposes.</li>
@@ -384,8 +422,8 @@
       5. Network Requests
     </h2>
     <p>
-      The App makes outbound network requests for the sole purpose of fetching publicly available
-      market prices:
+      The App makes outbound network requests for trial and Pro access verification described above
+      and for publicly available market prices:
     </p>
     <ul class="body-list">
       <li><strong>Mutual Fund NAV</strong> — queried from <code>api.mfapi.in</code> using only the publicly registered AMFI scheme code of a fund you have added. No account balances or unit counts are sent.</li>
@@ -442,12 +480,12 @@
     <p>MyPaisa implements multiple layers of security appropriate for a financial application:</p>
     <ul class="body-list">
       <li><strong>AES-256 encrypted database</strong> (SQLCipher) with a hardware-backed key stored in the Android KeyStore.</li>
-      <li><strong>PIN authentication</strong> with SHA-256 hashing; brute-force protection with exponential back-off delays and a hard lock after 10 consecutive failures.</li>
+      <li><strong>Optional PIN authentication</strong> with PBKDF2-HMAC-SHA256 hashing and failed-attempt delays.</li>
       <li><strong>Biometric authentication</strong> via Android's BiometricPrompt API — raw biometric data is never accessible to the App.</li>
       <li><strong>HTTPS-only networking</strong> enforced through Android's Network Security Configuration.</li>
       <li><strong>ProGuard/R8 code obfuscation</strong> in release builds to resist reverse-engineering.</li>
       <li>App screenshot <strong>prevention</strong> in the Android task switcher.</li>
-      <li><strong>No cloud backup</strong> of sensitive files.</li>
+      <li><strong>No automatic cloud backup</strong> of sensitive files; manual encrypted backups go to a destination you choose.</li>
     </ul>
     <p>
       While we have taken reasonable precautions to protect your data, no security system is
@@ -480,23 +518,18 @@
         <svg viewBox="0 0 24 24"><path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h
         -6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/></svg>
       </span>
-      9. Your Rights Under Indian Law
+      9. Access, Correction, Export and Deletion
     </h2>
     <p>
-      MyPaisa complies with the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong>
-      and the <strong>Information Technology Act, 2000</strong> (including the IT (Reasonable Security
-      Practices and Procedures) Rules, 2011).
-    </p>
-    <p>
-      Because all data is stored exclusively on your own device and we do not collect or process
-      your personal data on any server, most data-subject rights (access, correction, portability,
-      erasure) are exercised directly by you within the App or by uninstalling it. Specifically:
+      You can manage financial records directly in the App. Account service data is handled
+      separately as described in the Automatic trial and Pro verification section. Available controls include:
     </p>
     <ul class="body-list">
       <li><strong>Right to access</strong> — all your data is visible within the App at all times.</li>
       <li><strong>Right to correct</strong> — you can edit any record directly in the App.</li>
-      <li><strong>Right to erasure</strong> — delete individual records in the App, or uninstall the App to remove all data.</li>
-      <li><strong>Right to data portability</strong> — a future version of the App may include an export feature; in the meantime your data can be queried via the local database.</li>
+      <li><strong>Deletion</strong> — delete records in the App or uninstall to remove local data. Contact us as described above to request deletion of access-service data. Limited hashed anti-abuse history remains as described above.</li>
+      <li><strong>Export</strong> — use password-encrypted backups and available PDF reports to export your records.</li>
+      <li><strong>Account deletion without the App</strong> — for legacy accounts, email the contact in Section 11 from the Google address used to sign in with the subject "MyPaisa account deletion". We will arrange identity verification before processing the request. Do not send financial statements, passwords, or purchase tokens by email.</li>
     </ul>
     <p>
       If you have any questions about exercising these rights, please contact us using the details
@@ -549,7 +582,7 @@
 <footer>
   <p>© 2026 MyPaisa. All rights reserved.</p>
   <p style="margin-top:4px;">
-    This policy was last reviewed on <strong>September 17, 2026</strong>.
+    This policy was last reviewed on <strong>October 4, 2026</strong>.
   </p>
 </footer>
 
